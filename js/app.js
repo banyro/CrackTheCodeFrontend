@@ -26,37 +26,32 @@ function won(ele) {
   op.appendChild(newP);
   newP.innerHTML = "You needed " + (trys1 + trys2 + trys3) + " trys in total. Type in a number to restart.";
   autoScroll();
-  currentLevel = -1;
+  currentLevel = 0;
   trys1 = 1;
   trys2 = 1;
   trys3 = 1;
 }
 
-function Reset(guessedString) {
-const data = new URLSearchParams();
-  data.append("guessedString", guessedString);
-  fetch(BASE_URL + "reset", {
-    method: "POST",
-    body: data
-  })
-  .then(response => response.json())
-  .then(data => {
-      displayFeedback(data);
-  console.log(data)
-  currentLevel = currentLevel + 1;
-  })
-  .catch(error => console.error(error));
-}
-
 function Levels(guessedString) {
 const data = new URLSearchParams();
-  data.append("guessedString", guessedString);
-  fetch(BASE_URL + "level" + currentLevel, {
-    method: "POST",
-    body: data
-  })
-  .then(response => response.json())
-  .then(data => {
+  if (currentLevel == 1) {
+    const level1Response = level1(guessedString);
+    console.log(level1Response);
+    handleLevelResponse(level1Response);
+ }
+ else if (currentLevel == 2) {
+   const level2Response = level2(guessedString);
+   console.log(level2Response);
+   handleLevelResponse(level2Response);
+ }
+ else if (currentLevel == 3) {
+    const level3Response = level3(guessedString);
+    console.log(level3Response);
+    handleLevelResponse(level3Response);
+  }
+}
+
+function handleLevelResponse(data) {
       displayFeedback(data);
   console.log(data)
     if (data.isCorrect == true) {
@@ -66,42 +61,46 @@ const data = new URLSearchParams();
       op.appendChild(newP);
       if (currentLevel == 1) {
         newP.innerHTML = "You finished level " + currentLevel + " in " + trys1 + " try(s).";
+        rng1();
       }
       else if (currentLevel == 2) {
         newP.innerHTML = "You finished level " + currentLevel + " in " + trys2 + " try(s).";
+        rng2();
       }
-      else {
+      else if (currentLevel == 3) {
         newP.innerHTML = "You finished level " + currentLevel + " in " + trys3 + " try(s).";
+        rng3();
         won();
       }
       autoScroll();
       currentLevel = currentLevel + 1;
     }
     else {
-      if (currentLevel == 1) {
+      if (currentLevel == 0) {
+        currentLevel = currentLevel + 1;
+      }
+      else if (currentLevel == 1) {
         trys1 = trys1 + 1;
       }
       else if (currentLevel == 2) {
         trys2 = trys2 + 1;
       }
-      else {
+      else if (currentLevel == 3) {
         trys3 = trys3 + 1;
       }
     }
-  })
-  .catch(error => console.error(error));
 }
 
 function guess(ele) {
-  if (event.key === "Enter" && ele.value != "" && ele.value >= 0 && ele.value < 100 || ele.value == "reset" || ele.value == "secret" || ele.value == "prank") {
+  if (event.key === "Enter" && ele.value != "" && ele.value >= 0 && ele.value < 100 || ele.value == "reset" || ele.value == "secret" || ele.value == "prank" || ele.value == "prank2") {
     if (ele.value == "secret") {
-      const elem = document.getElementById("img");
-      elem.classList.toggle("hidden");
+      const cat = document.getElementById("img");
+      cat.classList.toggle("hidden");
       ele.value = "0";
     }
     else if (ele.value == "prank") {
-      const elem = document.getElementById("img");
-      elem.classList.toggle("prank");
+      const prank = document.getElementById("input");
+      prank.classList.toggle("prank");
       ele.value = "0";
     }
     displayInput(ele);
@@ -140,4 +139,9 @@ function displayInput(ele) {
     newP.innerHTML = "I want to reset the current number."
   }
   autoScroll();
+}
+
+function Feedback(feedback, isCorrect) {
+    this.feedback = feedback;
+    this.isCorrect = isCorrect;
 }
