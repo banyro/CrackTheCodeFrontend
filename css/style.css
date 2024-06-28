@@ -1,0 +1,148 @@
+body {
+    background-color: #1a1a1a;
+    font-family: consolas;
+}
+
+.yippie {
+  position: absolute;
+  top: 25vh;
+  left: 30vw;
+  width: 40%;
+}
+
+.menu {
+    position: fixed;
+    display: inline;
+    margin: 10px;
+    padding: 5px;
+    background-color: #dddddd;
+    font-size: 20px;
+    border: 5px solid #cccccc;
+    border-radius: 10px;
+    opacity: 50%;
+    top: 28px;
+    right: 28px;
+}
+
+.menu:hover {
+    transition-duration: 0.3s;
+    background-color: #cccccc;
+    border: 5px solid #aaaaaa;
+    opacity: 100%;
+    rotate: 720deg;
+}
+
+.menu:active {
+    background-color: #aaaaaa;
+    border: 5px solid #9a9a9a;
+}
+
+.settingsM {
+    z-index: 100;
+}
+
+.helpM {
+    top: 90px;
+    z-index: 100;
+}
+
+.overlay {
+    position: absolute;
+    height: calc(100vh - 60px);
+    width: min(500px, calc(100vw - 56px));
+    right: 18px;
+    display: initial;
+    padding: 10px;
+    color: #ffffff;
+    background-color: #2f2f2f;
+    border-left: 10px solid #1f1f1f;
+}
+
+.hidden {
+    display: none;
+}
+
+.inOut {
+    background-color: #2f2f2f;
+    border: 10px solid #00bb00;
+    height: calc(100vh - 40px);
+    display: block;
+}
+
+.output {
+    overflow: auto;
+    font-size: max(3vw, 16px);
+    height: calc(100% - 96px);
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.feedback {
+    margin: 10px 10px 0px 10px;
+    padding: 10px;
+    width: fit-content;
+    max-width: 50vw;
+    border: 5px solid #008800;
+    background-color: #00aa00;
+    border-radius: 10px;
+}
+
+.feedback:hover {
+    transition: 0.4s;
+    transition-delay: 0.15s;
+    font-size: max(3vw, 34px);
+    background-color: #00cc00;
+}
+
+.answers {
+    display: inline-flex;
+    margin: 10px 10px 0px 10px;
+    padding: 10px;
+    width: fit-content;
+    border: 5px solid #3333ff;
+    background-color: #4444ff;
+    border-radius: 10px;
+    color: #bbbbbb;
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+.answers:hover {
+    transition: 0.4s;
+    transition-delay: 0.15s;
+    font-size: max(3vw, 34px);
+    background-color: #5555ff;
+}
+
+input {
+    height: 36px;
+    font-size: max(3vw, 12px);
+    width: calc(100% - 50px);
+    border: 10px solid #202020;
+    padding: 15px;
+}
+
+.prank:hover {
+    transition: 1s;
+    visibility: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 16px;
+    height: 100%;
+}
+
+::-webkit-scrollbar-track {
+    border: 2px solid #6a6a6a;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #aaaaaa;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8a8a8a;
+}
